@@ -180,14 +180,25 @@ namespace Viktorina
 					MessageBox.Show("Неправильно");
 					foreach (var j in Buttons)
 					{
-						closeNums = new int[question.Answer.Length];
-						Answer = new char[question.Answer.Length];
-						newMargin = Convert.ToInt32(canvasmiddle.Width / 2 - (question.Answer.Length * 36) / 2);
-						cnt = 0;
 						canvas.Children.Remove(j);
 						canvas.Children.Add(j);
 					}
+					foreach (var j in labels)
+					{
+						canvasmiddle.Children.Remove(j);
+					}
+					foreach (var j in answerLabels)
+					{
+						canvasmiddle.Children.Remove(j);
+					}
+					labels = new List<System.Windows.Controls.Label>();
+					answerLabels = new List<System.Windows.Controls.Label>();
 					SetAnswer();
+					closeNums = new int[question.Answer.Length];
+					Answer = new char[question.Answer.Length];
+					newMargin = Convert.ToInt32(canvasmiddle.Width / 2 - (question.Answer.Length * 36) / 2);
+					cnt = 0;
+
 					return;
 				}
 			}
@@ -203,14 +214,17 @@ namespace Viktorina
 			{
 				canvasmiddle.Children.Remove(j);
 			}
+			labels.Clear();
 			foreach (var j in answerLabels)
 			{
 				canvasmiddle.Children.Remove(j);
 			}
+			answerLabels.Clear();
 			foreach (var j in Buttons)
 			{
 				canvas.Children.Remove(j);
 			}
+			Buttons.Clear();
 			TakeRandomQuest();
 			SetAnswer();
 			closeNums = new int[question.Answer.Length];
