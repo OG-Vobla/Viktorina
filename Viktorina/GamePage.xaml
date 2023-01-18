@@ -34,5 +34,7 @@
         <Canvas x:Name ="canvasmiddle" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Height="50" Width="1200" Margin="0,0,0,260">
         </Canvas>
         <Canvas x:Name ="canvas" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Height="80" Width="720" Margin="52,191,61,69" Grid.RowSpan="2"/>
+        <Button Content="Проверить" Background="#FF54608A" Opacity="0.7" FontFamily="Comic Sans MS" FontSize="20" BorderBrush="{x:Null}" Foreground="White" OpacityMask="Black" Click="Button_Click" Grid.Column="3" Margin="70,465,70,80" Grid.Row="1" Grid.RowSpan="2"/>
+
     </Grid>
 </Page>
