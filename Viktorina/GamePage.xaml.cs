@@ -83,13 +83,6 @@ namespace Viktorina
 		}
 		public void CheckSymbol(Button button)
 		{
-/*			foreach (var i in question.Answer)
-			{
-				if (button.Content.ToString() == i.ToString())
-				{
-					canvas.Children.Remove(button);
-				}
-			}*/
 			if(cnt < question.Answer.Length)
 			{
 				canvas.Children.Remove(button);
@@ -120,12 +113,12 @@ namespace Viktorina
 			int[] rndNums = new int[question.Answer.Length];
 			for (int i = 0; i < rndNums.Length; i++)
 			{
-				rndNums[i] = rnd.Next(0, 39);
+				rndNums[i] = rnd.Next(0, 40);
 				for (int j = 0; j < rndNums.Length; j++)
 				{
 					while (rndNums[i] == rndNums[j] && i != j)
 					{
-						rndNums[i] = rnd.Next(0, 39);
+						rndNums[i] = rnd.Next(0, 40);
 					}
 				}
 			}
