@@ -27,8 +27,10 @@
         </Grid.ColumnDefinitions>
         <Canvas Grid.Column="3" Grid.Row="1">
             <Rectangle  Fill="White" Opacity="0.2" Height="500" Width="410"/>
-            <TextBox IsReadOnly="False" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" x:Name="Description" Height="143" Width="334"  Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="38" FontFamily="Comic Sans MS" FontSize="16"></TextBox>
-            <TextBox x:Name="Answer" Height="33" Width="200" Canvas.Left="105" Canvas.Top="232" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="16"></TextBox>
+            <Label Content="Описание" Height="30" Width="200" Canvas.Left="105" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="16"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+            <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="False" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" x:Name="Description" Height="143" Width="334"  Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="38" FontFamily="Comic Sans MS" FontSize="16"></TextBox>
+            <Label Content="Ответ" Height="30" Width="200" Canvas.Left="105" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="16"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Top="204"></Label>
+            <TextBox MaxLength="40"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="Answer" Height="32" Width="250" Canvas.Left="80" Canvas.Top="234" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="16"></TextBox>
             <Button Grid.Column="1" Content="Создать задание" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Height="54" Width="270" Background="#FF54608A" Opacity="0.7" FontFamily="Comic Sans MS" FontSize="20" BorderBrush="{x:Null}"  Canvas.Left="70" Canvas.Top="383" Foreground="White" OpacityMask="Black" Click="Button_Click"/>
         </Canvas>
     </Grid>

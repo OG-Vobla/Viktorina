@@ -29,9 +29,21 @@ namespace Viktorina
 		{
 			if(Description.Text != "" && Answer.Text != "")
 			{
+				foreach	(char i in Answer.Text)
+				{
+					if((int)i < ((1040)) || (int)i > ((1071)))
+					{
+						MessageBox.Show("Ответ должен состоять из больших букв русского алфавита.");
+						return;
+					}
+				}
 				new Question(Description.Text, Answer.Text).AddToDb();
 				Description.Text = "";
 				Answer.Text = "";
+			}
+			else
+			{
+				MessageBox.Show("Не все поля заполнены.");
 			}
 
 		}
