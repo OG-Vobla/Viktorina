@@ -34,15 +34,20 @@ namespace Viktorina
 		int newMargin;
 		int cnt;
 		int cnt1;
+		int lives;
+		List<Button> PressButtons;
 		public GamePage()
 		{
 			InitializeComponent();
 			questionList = Question.FindAllInDb();
 			rnd = new Random();
 			cnt1 = 0;
+			lives = 3;
+			Lives.Content = lives;
 			labels = new List<System.Windows.Controls.Label>();
 			answerLabels = new List<System.Windows.Controls.Label>();
 			Buttons = new List<Button>();
+			PressButtons = new List<Button>();
 			newMargin = 0;
 			Buttons.Clear();
 			TakeRandomQuest();
@@ -56,7 +61,7 @@ namespace Viktorina
 		public void SetAllParam()
 		{
 			cnt1 = 0;
-
+			Lives.Content= lives;
 			newMargin = 0;
 			foreach (var j in labels)
 			{
@@ -73,10 +78,11 @@ namespace Viktorina
 				canvas.Children.Remove(j);
 			}
 			Buttons.Clear();
+			PressButtons.Clear();
+			canvas.Children.Clear();
 			labels = new List<System.Windows.Controls.Label>();
 			answerLabels = new List<System.Windows.Controls.Label>();
 			Buttons = new List<Button>();
-			TakeRandomQuest();
 			SetAnswer();
 			closeNums = new int[question.Answer.Length];
 			Answer = new char[question.Answer.Length];
@@ -165,6 +171,7 @@ namespace Viktorina
 				answerLabels.Add(Buttonitem);
 				canvasmiddle.Children.Remove(labels[cnt]);
 				canvasmiddle.Children.Add(Buttonitem);
+				PressButtons.Add(button);
 				cnt++;
 			}
 		}
@@ -191,7 +198,7 @@ namespace Viktorina
 			for (int i = 1; i <= 40; i++)
 			{
 				Button Buttonitem = new Button();
-				Buttonitem.Content = (char)(rnd.Next(1040, 1071));
+				Buttonitem.Content = (char)(rnd.Next(1040, 1072));
 				for (int j = 0; j < rndNums.Count; j++)
 				{
 					if (i == rndNums[j])
@@ -236,64 +243,53 @@ namespace Viktorina
 				}
 				else
 				{
-					MessageBox.Show("Неправильно");
-					/*					foreach (var j in Buttons)
-										{
-											canvas.Children.Remove(j);
-											canvas.Children.Add(j);
-										}
-										foreach (var j in labels)
-										{
-											canvasmiddle.Children.Remove(j);
-										}
-										foreach (var j in answerLabels)
-										{
-											canvasmiddle.Children.Remove(j);
-										}
-										labels = new List<System.Windows.Controls.Label>();
-										answerLabels = new List<System.Windows.Controls.Label>();
-										SetAnswer();
-										closeNums = new int[question.Answer.Length];
-										Answer = new char[question.Answer.Length];
-										newMargin = Convert.ToInt32(canvasmiddle.Width / 2 - (question.Answer.Length * 36) / 2);
-										cnt = 0;
-					*/
-					SetAllParam();
+					if(lives > 1)
+					{
+						MessageBox.Show("Неправильно");
+						lives--;
+						SetAllParam();
+					}
+					else
+					{
+						MessageBox.Show("Неправильно, у вас закончились жизни");
+						this.NavigationService.GoBack();
+						return;
+					}
 					return;
 				}
 			}
 			MessageBox.Show("Правильно");
 			questionList.Remove(question);
-			/*if(questionList.Count == 0)
-			{
-				MessageBox.Show("Вопросы закончились");
-				this.NavigationService.GoBack();
-				return;
-			}
-			foreach (var j in labels)
-			{
-				canvasmiddle.Children.Remove(j);
-			}
-			labels.Clear();
-			foreach (var j in answerLabels)
-			{
-				canvasmiddle.Children.Remove(j);
-			}
-			answerLabels.Clear();
-			foreach (var j in Buttons)
-			{
-				canvas.Children.Remove(j);
-			}
-			Buttons.Clear();
 			TakeRandomQuest();
-			SetAnswer();
-			closeNums = new int[question.Answer.Length];
-			Answer = new char[question.Answer.Length];
-			newMargin = Convert.ToInt32(canvasmiddle.Width / 2 - (question.Answer.Length * 36) / 2);
-			cnt = 0;
-			SetKeyboard();*/
 			SetAllParam();
 			questionList.Remove(question);
+		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			if(answerLabels.Count != 0)
+			{
+				Button Buttonitem = new Button();
+				Buttonitem.Content = PressButtons[PressButtons.Count - 1].Content;
+				Buttonitem.Height = 35;
+				Buttonitem.Width = 35;
+				Buttonitem.Background = new SolidColorBrush(Colors.White);
+				Buttonitem.Margin = PressButtons[PressButtons.Count - 1].Margin;
+				Buttonitem.Foreground = new SolidColorBrush(Colors.Black);
+				Buttonitem.FontFamily = new FontFamily("Comic Sans MS");
+				Buttonitem.FontSize = 20;
+				Buttonitem.Click += (s, e) => { CheckSymbol(Buttonitem); };
+				PressButtons.Remove(PressButtons[PressButtons.Count - 1]);
+				cnt--;
+				canvasmiddle.Children.Remove(answerLabels[cnt]);
+				canvasmiddle.Children.Add(labels[cnt]);
+				answerLabels.Remove(answerLabels[cnt]);
+				canvas.Children.Add(Buttonitem);
+			}
+			else
+			{
+				MessageBox.Show("Нет букв для удаления.");
+			}
 		}
 	}
 	

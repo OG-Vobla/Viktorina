@@ -27,6 +27,8 @@
             <ColumnDefinition Width="398"></ColumnDefinition>
             <ColumnDefinition Width="53*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Label FontFamily="Comic Sans MS" FontSize="20" Grid.Column="3" Margin="129,10,170,61">Попытки:</Label>
+        <Label x:Name="Lives" FontFamily="Comic Sans MS" FontSize="20" Grid.Column="3" Margin="235,10,111,61"></Label>
         <Canvas Grid.Column="3" Grid.Row="1">
             <Rectangle  Fill="White" Opacity="0.2" Height="550" Width="1200" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="-395" Canvas.Top="-50"/>
             <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" x:Name="Description" Height="94" Width="1100"  Canvas.Top="-42" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-344" FontFamily="Comic Sans MS" FontSize="20"></TextBox>
@@ -34,6 +36,7 @@
         <Canvas x:Name ="canvasmiddle" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Width="1200" Margin="53,95,60,314"/>
         <Canvas x:Name ="canvas" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Height="80" Width="720" Margin="52,191,61,69" Grid.RowSpan="2"/>
         <Button Content="Проверить" Background="#FF54608A" Opacity="0.7" FontFamily="Comic Sans MS" FontSize="20" BorderBrush="{x:Null}" Foreground="White" OpacityMask="Black" Click="Button_Click" Grid.Column="3" Margin="80,436,60,10" Grid.Row="1"/>
+        <Button Content="Удалить букву" Background="#FF54608A" Opacity="0.7" FontFamily="Comic Sans MS" FontSize="20" BorderBrush="{x:Null}" Foreground="White" OpacityMask="Black" Grid.Column="5" Margin="34,436,94,10" Grid.Row="1" Click="Button_Click_1"/>
 
     </Grid>
 </Page>
