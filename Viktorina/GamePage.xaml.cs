@@ -95,7 +95,7 @@ namespace Viktorina
 			int random = rnd.Next(0, questionList.Count);
 			if (questionList.Count == 0)
 			{
-				MessageBox.Show("Вопросы закончились");
+				MessageBox.Show("Поздравляем, вы ответили на все вопросы.");
 				this.NavigationService.GoBack();
 				return;
 			}
@@ -245,20 +245,20 @@ namespace Viktorina
 				{
 					if(lives > 1)
 					{
-						MessageBox.Show("Неправильно");
+						MessageBox.Show("Жаль, это не правильно");
 						lives--;
 						SetAllParam();
 					}
 					else
 					{
-						MessageBox.Show("Неправильно, у вас закончились жизни");
+						MessageBox.Show("Неправильно, у вас закончились попытки. Удачи в следующий раз.");
 						this.NavigationService.GoBack();
 						return;
 					}
 					return;
 				}
 			}
-			MessageBox.Show("Правильно");
+			MessageBox.Show("Поздравляем. Это правильно.");
 			questionList.Remove(question);
 			TakeRandomQuest();
 			SetAllParam();
